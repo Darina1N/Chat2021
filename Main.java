@@ -19,9 +19,10 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+        //launch(args);
 
         Database database= new Database();
         database.insertNewUser("Darina","dracik123");
+        database.loginUser("Darina","dracik123");
     }
 }
