@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="txt_error" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Label layoutX="59.0" layoutY="77.0" text="Login:">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="59.0" layoutY="134.0" text="Password:">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_log" layoutX="175.0" layoutY="217.0" mnemonicParsing="false" onAction="#click" text="log in">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <PasswordField fx:id="txt_password" layoutX="174.0" layoutY="137.0" text="txt_password">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </PasswordField>
+      <TextField fx:id="txt_login" layoutX="174.0" layoutY="80.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label fx:id="lbl_error" layoutX="202.0" layoutY="176.0" prefHeight="17.0" prefWidth="118.0" text="Login is Incorecct " textFill="#ed0707" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
