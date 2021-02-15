@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.mainController">
+   <children>
+      <Line endX="663.4000244140625" layoutX="122.0" layoutY="78.0" startX="-100.0" />
+      <Label layoutX="22.0" layoutY="40.0" prefHeight="20.0" prefWidth="35.0" text="User:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="40.0" prefHeight="18.0" prefWidth="102.0" text="Label">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="718.0" layoutY="35.0" mnemonicParsing="false" text="Log out">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

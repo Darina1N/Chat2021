@@ -163,4 +163,20 @@ public class Database {
         }
         return null;
     }
+
+    public void deleteAllMyMessages(String login){
+        if(login.length()>0){
+            String query = "DELETE * FROM message WHERE toUser LIKE ?";
+            try {
+                Connection connection=getConnection();
+                PreparedStatement ps = connection.prepareStatement(query);
+                ps.setInt(1, getUserId(login));
+                int result = ps.executeUpdate();
+                System.out.println(result);
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
