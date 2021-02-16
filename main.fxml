@@ -2,23 +2,55 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.mainController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.mainController">
    <children>
-      <Line endX="663.4000244140625" layoutX="122.0" layoutY="78.0" startX="-100.0" />
-      <Label layoutX="22.0" layoutY="40.0" prefHeight="20.0" prefWidth="35.0" text="User:">
+      <Label layoutX="320.0" layoutY="40.0" prefHeight="20.0" prefWidth="35.0" text="User:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_user" layoutX="361.0" layoutY="40.0" prefHeight="20.0" prefWidth="191.0" text="user" textFill="#049f45">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="519.0" layoutY="456.0" mnemonicParsing="false" text="Refresh">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="22.0" layoutY="75.0" text="New message:" />
+      <Label layoutX="22.0" layoutY="108.0" text="To:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="57.0" layoutY="40.0" prefHeight="18.0" prefWidth="102.0" text="Label">
+      <Label layoutX="22.0" layoutY="151.0" text="Text:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="718.0" layoutY="35.0" mnemonicParsing="false" text="Log out">
+      <TextField layoutX="62.0" layoutY="146.0" prefHeight="290.0" prefWidth="268.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Button layoutX="170.0" layoutY="456.0" mnemonicParsing="false" text="Send">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TextArea layoutX="400.0" layoutY="146.0" prefHeight="290.0" prefWidth="306.0" />
+      <Label layoutX="400.0" layoutY="75.0" text="My messages:" />
+      <SplitMenuButton layoutX="60.0" layoutY="105.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="191.0" text="SplitMenuButton">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </SplitMenuButton>
+      <Button layoutX="707.0" layoutY="40.0" mnemonicParsing="false" text="Log out">
          <font>
             <Font size="14.0" />
          </font>

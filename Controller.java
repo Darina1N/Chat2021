@@ -39,7 +39,7 @@ public class Controller {
             Parent root= FXMLLoader.load(getClass().getResource("main.fxml"));
             Stage stage= new Stage();
             stage.setTitle("My chat 2021 application"); //názov druhého okna
-            stage.setScene(new Scene(root,800,600)); //veľkosť druhého okna
+            stage.setScene(new Scene(root,800,500)); //veľkosť druhého okna
             stage.show();
             btn_log.getScene().getWindow().hide();//po kliknutí na buton logovania sa mi povodne okno zatvori
         }catch (Exception e){
