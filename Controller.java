@@ -29,21 +29,28 @@ public class Controller {
                 lbl_error.setVisible(true);
             } else {
                 System.out.println("Your login is correct");
-                openMainForm();
+                openMainForm(user);
             }
         }
     }
 
-    private void openMainForm(){//metoda na otvorenie noveho okna
+    private void openMainForm(User user){//metoda na otvorenie noveho okna
         try{
-            Parent root= FXMLLoader.load(getClass().getResource("main.fxml"));
-            Stage stage= new Stage();
+            FXMLLoader root = new FXMLLoader();
+            root.setLocation(getClass().getResource("main.fxml"));
+            Stage stage = new Stage();
             stage.setTitle("My chat 2021 application"); //názov druhého okna
-            stage.setScene(new Scene(root,800,500)); //veľkosť druhého okna
+            stage.setScene(new Scene(root.load(), 800, 500)); //veľkosť druhého okna
+            stage.setResizable(false);
             stage.show();
+            MainController mainController = root.getController();
+            mainController.setUser(user);
+            mainController.initLoginName();
+            mainController.listOfUsers();
             btn_log.getScene().getWindow().hide();//po kliknutí na buton logovania sa mi povodne okno zatvori
         }catch (Exception e){
             e.printStackTrace();
         }
     }
+
 }

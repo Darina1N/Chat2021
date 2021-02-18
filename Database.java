@@ -15,6 +15,9 @@ public class Database {
     private String username = "mysqluser";
     private String password = "Kosice2021!";
 
+    public static void main(String[] args) {
+        new Database().sendMessage(new Database().getUserId("Darina"),"Brano","Ahoj");
+    }
     private Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connection = DriverManager.getConnection(url, username, password);
@@ -118,7 +121,7 @@ public class Database {
         int to=getUserId(toUser);
         if(to==-1)
             return false;
-        String query="INSERT INTO message( from, to, text) VALUES (?,?,?)";
+        String query="INSERT INTO message( fromUser, toUser, text) VALUES (?,?,?)";
         try{
             Connection connection=getConnection();
             PreparedStatement ps=connection.prepareStatement(query);
@@ -127,6 +130,7 @@ public class Database {
             ps.setString(3,text);
             int result=ps.executeUpdate();
             connection.close();
+            System.out.println(result);
             return true;
         }catch (Exception e){
             e.printStackTrace();
@@ -139,7 +143,7 @@ public class Database {
         if(login==null || login.equals(""))
             return null;
         List<Message> list= new ArrayList<>();
-        String query="SELECT message.id, message.dt, message.fromUser, message.toUser, text "+
+        String query="SELECT message.id, message.dt, message.fromUser, message.toUser, message.text "+
                 "FROM message "+
                 "INNER JOIN user ON user.id=message.toUser "+
                 "WHERE fromUser LIKE ?";
@@ -154,7 +158,7 @@ public class Database {
                 String from= rs.getString("fromUser");
                 String to= rs.getString("toUser");
                 String text=rs.getString("text");
-                Message message=new Message(id,from,to,text,date);
+                Message message=new Message(id,from,login,text,date);
                 list.add(message);
             }
             connection.close();
@@ -178,5 +182,23 @@ public class Database {
                 e.printStackTrace();
             }
         }
+    }
+
+    public List<String> allUsers(){
+        List<String> list= new ArrayList<>();
+        String query="SELECT login FROM user";
+        try{
+            Connection connection=getConnection();
+            PreparedStatement ps=connection.prepareStatement(query);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                String nameUser=rs.getString("login");
+                list.add(nameUser);
+            }
+            connection.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
     }
 }
