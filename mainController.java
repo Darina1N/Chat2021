@@ -58,13 +58,11 @@ public class MainController {
     public void refreshMessage(ActionEvent actionEvent) {
         txt_mymessages.clear();
         List<Message> list = new Database().getMyMessages(user.getLogin());
+        System.out.println(list.size());
         if(list==null)
             return;
-        for(Message en: list){
-            System.out.println(en.getText());
-        }
-        /*if(list.isEmpty()){
 
+        if(list.isEmpty()){
             txt_mymessages.appendText("You do not have any new messages");
         }
         else{
@@ -76,8 +74,9 @@ public class MainController {
                 String od = message.getFrom();
                 String komu = user.getLogin();
                 String messagee = message.getText();
-                txt_mymessages.appendText(strDate + " " +od + " " + komu + " " + messagee + '\n');
+                txt_mymessages.appendText(strDate + " " +od + " " + '\n' +messagee + '\n');
             }
-        }*/
+        }
     }
+
 }

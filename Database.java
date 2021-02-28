@@ -16,7 +16,7 @@ public class Database {
     private String password = "Kosice2021!";
 
     public static void main(String[] args) {
-        new Database().sendMessage(new Database().getUserId("Darina"),"Brano","Ahoj");
+      //  new Database().sendMessage(new Database().getUserId("Darina"),"Brano","Ahoj");
     }
     private Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -115,6 +115,26 @@ public class Database {
         return -1;
     }
 
+    public String getUserLogin(int id) {
+        if(id<=0)
+            return null;
+        String query = "SELECT login FROM user WHERE id LIKE ?";
+        try {
+            Connection connection=getConnection();
+            PreparedStatement ps=connection.prepareStatement(query);
+            ps.setInt(1,id);
+            ResultSet rs=ps.executeQuery();
+            if(rs.next()){
+                String login = rs.getString("login");
+                return login;
+            }
+            connection.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public boolean sendMessage(int from, String toUser, String text){
         if(text==null || text.equals(""))
             return false;
@@ -143,10 +163,11 @@ public class Database {
         if(login==null || login.equals(""))
             return null;
         List<Message> list= new ArrayList<>();
+
         String query="SELECT message.id, message.dt, message.fromUser, message.toUser, message.text "+
                 "FROM message "+
-                "INNER JOIN user ON user.id=message.toUser "+
-                "WHERE fromUser LIKE ?";
+                "INNER JOIN user ON user.id=message.fromUser "+
+                "WHERE toUser LIKE ?";
         try{
             Connection connection=getConnection();
             PreparedStatement ps=connection.prepareStatement(query);
@@ -155,13 +176,20 @@ public class Database {
             while (rs.next()){
                 int id= rs.getInt("id");
                 Date date=rs.getDate("dt");
-                String from= rs.getString("fromUser");
+                int from= rs.getInt("fromUser");
                 String to= rs.getString("toUser");
                 String text=rs.getString("text");
-                Message message=new Message(id,from,login,text,date);
+                //Time time = rs.getTime("dt");
+                Timestamp timestamp = rs.getTimestamp("dt");
+                Date date1 = new Date(timestamp.getTime());
+                String odKoho=getUserLogin(from);
+                //System.out.println(id+" "+odKoho+" "+login+" "+text);
+                //System.out.println(id + " " + odKoho +" " + login + " " + text +" "+ date+ " "+time);
+                Message message=new Message(id,odKoho,login,text,date1);
                 list.add(message);
             }
             connection.close();
+            return list;
         }catch (Exception e){
             e.printStackTrace();
         }
